@@ -1,13 +1,23 @@
 // Server.js for http-api-assignment-ii
 const http = require('http');
-const { route } = require('./router/router.js/index.js');
+const { route } = require('./router/router.js');
+const requestHandler = require('./actions');
 
 // Port.
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
+// POST method handler.
+
+
 // On request to the server, process the route.
 const onRequest = (request, response) => {
-    route(request, response);
+    // 
+    requestHandler(request.method, )
+    
+    console.dir(handler);
+
+
+
 };
 
 // Create and listen to the server.
