@@ -8,37 +8,49 @@ const index = fs.readFileSync(`${__dirname}/../../client/client.html`);
 const css = fs.readFileSync(`${__dirname}/../../client/style.css`);
 
 // Get the index.
-const getIndex = (request, response) => router.sendResponse(request, response, 200, mimetype.HTML, index);
+const getIndex = (request, response) => {
+  router.sendResponse(request, response, 200, mimetype.HTML, index);
+};
 
 // Get the CSS.
-const getCSS = (request, response) => router.sendResponse(request, response, 200, mimetype.CSS, css);
+const getCSS = (request, response) => {
+  router.sendResponse(request, response, 200, mimetype.CSS, css);
+};
 
 // Get a particular file.
 const getFile = (request, response, filename, filetype) => {
-    fs.readFile(`${__dirname}/../../client/${filename}`, (err, data) => {
-        if(err) { 
-            router.sendError(request, response, 404, err);
-        } else {
-            router.sendResponse(request, response, 200, filetype, data);
-        }
-    });
+  fs.readFile(`${__dirname}/../../client/${filename}`, (err, data) => {
+    if (err) {
+      router.sendError(request, response, 404, err);
+    } else {
+      router.sendResponse(request, response, 200, filetype, data);
+    }
+  });
 };
 
 // Get JS file.
-const getScript = (request, response, filename) => getFile(request, response, filename, mimetype.JS);
+const getScript = (request, response, filename) => {
+  getFile(request, response, filename, mimetype.JS);
+};
 
 // Routes associated with this.
 const routes = {
-    '/': getIndex,
-    '/index.html': getIndex,
-    '/style.css': getCSS,
-    '/index.js': (request, response) => { getScript(request, response, 'src/index.js'); },
-    '/form.js': (request, response) => { getScript(request, response, 'src/form.js'); },
-    '/ajax.js': (request, response) => { getScript(request, response, 'src/ajax.js'); }    
+  '/': getIndex,
+  '/index.html': getIndex,
+  '/style.css': getCSS,
+  '/index.js': (request, response) => {
+    getScript(request, response, 'src/index.js');
+  },
+  '/form.js': (request, response) => {
+    getScript(request, response, 'src/form.js');
+  },
+  '/ajax.js': (request, response) => {
+    getScript(request, response, 'src/ajax.js');
+  },
 };
 
 // Export the routes.
 module.exports = {
-    routes,
-    getIndex
-}
+  routes,
+  getIndex,
+};
