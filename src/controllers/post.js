@@ -1,5 +1,5 @@
 // Handle request.
-const handleRequest = (request, response) => {
+const handleRequest = (request, response, parsedUrl) => {
     console.log(`Handling 'POST' method.`);
 };
 
